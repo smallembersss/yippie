@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFrame Spawner</title>
+    <style>
+        iframe {
+            width: 200px;
+            height: 150px;
+            border: 1px solid black;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <button id="start">Start Spawning IFrames</button>
+    <div id="container"></div>
+
+    <script>
+        let interval = 1; // Set to 1 ms for very fast spawning
+        let spawnInterval;
+
+        document.getElementById('start').addEventListener('click', function() {
+            const container = document.getElementById('container');
+
+            // Clear any previous interval
+            clearInterval(spawnInterval);
+
+            // Define the function to spawn iframes
+            const spawnIFrames = () => {
+                const iframe = document.createElement('iframe');
+                iframe.src = "about:blank"; // Test URL
+                container.appendChild(iframe);
+            };
+
+            // Start the spawning with the very fast interval
+            spawnInterval = setInterval(spawnIFrames, interval);
+        });
+    </script>
+</body>
+</html>
